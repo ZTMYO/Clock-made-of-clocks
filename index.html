@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟组成的时钟</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 横屏提示 -->
+    <div id="rotate-tip">
+        <div class="rotate-text">请将设备横屏以获得最佳体验</div>
+    </div>
+
+    <!-- 菜单按钮 -->
+    <div id="menu-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </div>
+
+    <!-- 配置面板 -->
+    <div id="config-panel" class="hidden">
+        <div class="config-header">
+            <h3>时钟配置</h3>
+            <div id="close-btn">×</div>
+        </div>
+        
+        <div class="config-content">
+            <!-- 颜色配置 -->
+            <div class="config-item">
+                <label>颜色配置</label>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <input type="color" id="bg-color" value="#ffffff" title="背景颜色">
+                        <span>背景</span>
+                    </div>
+                    <div class="color-item">
+                        <input type="color" id="hand-color" value="#000000" title="指针颜色">
+                        <span>指针</span>
+                    </div>
+                    <div class="color-item">
+                        <input type="color" id="unit-bg-color" value="#FAFAFA" title="单元格背景">
+                        <span>单元格</span>
+                    </div>
+                    <div class="color-item">
+                        <input type="color" id="unit-border-color" value="#E8E8E8" title="边框">
+                        <span>边框</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 圆角大小 -->
+            <div class="config-item range-item">
+                <label>圆角大小</label>
+                <div class="range-wrapper">
+                    <input type="range" id="border-radius" min="0" max="50" value="50">
+                    <span class="range-value" id="radius-value">50%</span>
+                </div>
+            </div>
+
+            <!-- 边框粗细 -->
+            <div class="config-item range-item">
+                <label>边框粗细</label>
+                <div class="range-wrapper">
+                    <input type="range" id="border-width" min="1" max="5" step="0.5" value="2">
+                    <span class="range-value" id="width-value">2px</span>
+                </div>
+            </div>
+
+            <!-- 时钟大小 -->
+            <div class="config-item range-item">
+                <label>时钟大小</label>
+                <div class="range-wrapper">
+                    <input type="range" id="clock-size" min="50" max="150" value="100">
+                    <span class="range-value" id="size-value">100%</span>
+                </div>
+            </div>
+
+            <!-- 动画速度 -->
+            <div class="config-item range-item">
+                <label>动画速度</label>
+                <div class="range-wrapper">
+                    <input type="range" id="animation-speed" min="50" max="500" value="250">
+                    <span class="range-value" id="speed-value">250ms</span>
+                </div>
+            </div>
+
+            <!-- 预设主题 -->
+            <div class="config-item">
+                <label>预设主题</label>
+                <div class="theme-radio">
+                    <input checked value="default" name="theme" id="theme-default" type="radio">
+                    <label for="theme-default" title="默认">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#E6E6E6" d="M6 12L10.2426 16.2426L18.727 7.75732"></path>
+                            </svg>
+                        </span>
+                    </label>
+
+                    <input value="ocean" name="theme" id="theme-ocean" type="radio">
+                    <label for="theme-ocean" title="海洋">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#E6E6E6" d="M6 12L10.2426 16.2426L18.727 7.75732"></path>
+                            </svg>
+                        </span>
+                    </label>
+
+                    <input value="sunset" name="theme" id="theme-sunset" type="radio">
+                    <label for="theme-sunset" title="日落">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#E6E6E6" d="M6 12L10.2426 16.2426L18.727 7.75732"></path>
+                            </svg>
+                        </span>
+                    </label>
+
+                    <input value="forest" name="theme" id="theme-forest" type="radio">
+                    <label for="theme-forest" title="森林">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#E6E6E6" d="M6 12L10.2426 16.2426L18.727 7.75732"></path>
+                            </svg>
+                        </span>
+                    </label>
+
+                    <input value="neon" name="theme" id="theme-neon" type="radio">
+                    <label for="theme-neon" title="霓虹">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#E6E6E6" d="M6 12L10.2426 16.2426L18.727 7.75732"></path>
+                            </svg>
+                        </span>
+                    </label>
+
+                    <input value="dream" name="theme" id="theme-dream" type="radio">
+                    <label for="theme-dream" title="梦幻">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#E6E6E6" d="M6 12L10.2426 16.2426L18.727 7.75732"></path>
+                            </svg>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 重置按钮 -->
+            <div class="config-item">
+                <button id="reset-btn" class="reset-btn">重置所有设置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主容器 -->
+    <div id="clock-container"></div>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
